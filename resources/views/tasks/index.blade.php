@@ -1,3 +1,5 @@
+@inject('taskStatus', \App\Http\Controllers\TaskController::class)
+
 @extends('layout.app')
 
 @section('title', 'Lista de Tarefas')
@@ -18,26 +20,14 @@
         </div>
         <div class="tasks">
             @foreach ($tasks as $task)
-                @if ($task->status == 1)
-                    @php
-                        $status['text-style'] = ' text--success';
-                        $status['text-line'] = '  text--line';
-                        $status['bg-color'] = ' bg--warning';
-                        $status['action-icon'] = '<i class="fa-solid fa-xmark action__icon"></i>';
-                    @endphp
-                @elseif($task->status == 2)
-                    @php
-                        $status['text-style'] = null;
-                        $status['text-line'] = null;
-                        $status['bg-color'] = ' bg--success';
-                        $status['action-icon'] = '<i class="fa-solid fa-check action__icon"></i>';
-                    @endphp
-                @endif
+                @php
+                    $status = $taskStatus->getStatus($task->status);
+                @endphp
                 <div class="task">
                     <div class="task__icon-box">
-                        <i class="fa-solid fa-clipboard-list task__icon{{ $status['text-style'] }}"></i>
+                        <i class="fa-solid fa-clipboard-list task__icon {{ $status->iconColor }}"></i>
                     </div>
-                    <h2 class="task__title{{ $status['text-line'] }}">{{ $task->task }}</h2>
+                    <h2 class="task__title {{ $status->textStyle }}">{{ $task->task }}</h2>
                     <div class="task__actions">
                         <a href="./edit.html" class="action__box bg--blue">
                             <i class="fa-solid fa-pen action__icon"></i>
@@ -45,8 +35,8 @@
                         <a href="#" class="action__box bg--danger">
                             <i class="fa-solid fa-trash action__icon"></i>
                         </a>
-                        <a href="#" class="action__box{{ $status['bg-color'] }}">
-                            {!! $status['action-icon'] !!}
+                        <a href="#" class="action__box {{ $status->bgColor }}">
+                            {!! $status->actionIcon !!}
                         </a>
                     </div>
                 </div>
