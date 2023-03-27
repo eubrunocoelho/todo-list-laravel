@@ -6,7 +6,11 @@
 
 @section('content')
     @if ($errors->any())
-        {{ dd($errors->all()) }}
+        @foreach ($errors->all() as $error)
+            <section class="section alert mb--20 box--danger">
+                <p>{{ $error }}</p>
+            </section>
+        @endforeach
     @endif
     <section class="section">
         <div class="section-heading">

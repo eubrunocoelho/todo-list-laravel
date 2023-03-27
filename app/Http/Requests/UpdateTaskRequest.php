@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTaskRequest extends FormRequest
+class UpdateTaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +22,7 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'task' => 'required|string|min:3|max:255'
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'task.required' => 'Digite uma tarefa.',
-            'task.min' => 'A tarefa deve conter pelo menos :min caracteres.',
-            'task.max' => 'A tarefa deve conter no máximo :max caracteres.'
+            //
         ];
     }
 }
