@@ -41,6 +41,8 @@ class TaskController extends Controller
         $templateVariables = [
             'task' => $task
         ];
+
+        return view('tasks.show', $templateVariables);
     }
 
     public function store(StoreTaskRequest $request)
