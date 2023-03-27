@@ -40,8 +40,8 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $data = $request->all();
-
-        dd($data);
+        
+        $this->model->create($data);
 
         return redirect()->route('tasks.index');
     }

@@ -5,6 +5,9 @@
 @section('title', 'Lista de Tarefas')
 
 @section('content')
+    @if ($errors->any())
+        {{ dd($errors->all()) }}
+    @endif
     <section class="section">
         <div class="section-heading">
             <div class="section-heading__icon"></div>
