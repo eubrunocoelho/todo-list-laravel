@@ -11,9 +11,10 @@
             <h1 class="section-heading__title">To Do List</h1>
         </div>
         <div class="new-task">
-            <form action="{{ route('tasks.index') }}" class="new-task__form">
-                <input type="text" class="new-task__input" placeholder="Nova tarefa...">
-                <button class="new-task__btn">
+            <form action="{{ route('tasks.store') }}" class="new-task__form" method="POST">
+                @csrf
+                <input type="text" class="new-task__input" placeholder="Nova tarefa..." id="task" name="task">
+                <button class="new-task__btn" type="submit">
                     <i class="fa-solid fa-plus new-task__icon"></i>
                 </button>
             </form>

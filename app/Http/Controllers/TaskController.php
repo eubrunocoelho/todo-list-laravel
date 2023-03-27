@@ -6,6 +6,10 @@ use App\Models\{
     Task
 };
 
+use App\Http\Requests\{
+    StoreTaskRequest
+};
+
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -19,13 +23,27 @@ class TaskController extends Controller
 
     public function index()
     {
+        // $data = $request->all();
+        // $data['status'] = 2;
+
         $tasks = $this->model->all();
 
         $templateVariables = [
             'tasks' => $tasks
         ];
 
+        // $this->model->create($data);
+
         return view('tasks.index', $templateVariables);
+    }
+
+    public function store(StoreTaskRequest $request)
+    {
+        $data = $request->all();
+
+        dd($data);
+
+        return redirect()->route('tasks.index');
     }
 
     public function getStatus($statusCode)
