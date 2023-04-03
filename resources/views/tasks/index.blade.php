@@ -20,7 +20,7 @@
         <div class="new-task">
             <form action="{{ route('tasks.store') }}" class="new-task__form" method="POST">
                 @csrf
-                <input type="text" class="new-task__input" placeholder="Nova tarefa..." id="task" name="task">
+                <input type="text" class="new-task__input" placeholder="Nova tarefa..." id="task" name="task" value="{{ old('task') }}">
                 <button class="new-task__btn" type="submit">
                     <i class="fa-solid fa-plus new-task__icon"></i>
                 </button>

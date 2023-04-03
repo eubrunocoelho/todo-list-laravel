@@ -54,6 +54,13 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
+    public function update(UpdateTaskRequest $request, $ID)
+    {
+        $data = $request->all();
+
+        return redirect()->route('tasks.show', ['ID' => $ID]);
+    }
+
     public function getStatus($statusCode)
     {
         switch ($statusCode) {
