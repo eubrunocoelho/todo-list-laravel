@@ -56,9 +56,15 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, $ID)
     {
+        if (($task = $this->model->find($ID)) == null)
+            return redirect()->route('task.index');
+
         $data = $request->all();
 
-        return redirect()->route('tasks.show', ['ID' => $ID]);
+        if ($task->update($data))
+            return redirect()->route('tasks.index');
+
+        return redirect()->route('tasks.show', ['ID' => $task->id]);
     }
 
     public function getStatus($statusCode)

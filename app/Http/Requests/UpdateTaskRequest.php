@@ -25,4 +25,13 @@ class UpdateTaskRequest extends FormRequest
             'task' => 'required|string|min:3|max:255'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'taks.required' => 'Digite uma tarefa.',
+            'task.min' => 'A tarefa deve conter pelo menos :min caracteres.',
+            'task.max' => 'A tarefa deve conter no máximo :max caracteres.'
+        ];
+    }
 }
