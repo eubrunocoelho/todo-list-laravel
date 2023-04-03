@@ -22,7 +22,15 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'task' => 'required|string|min:3|unique:tasks|max:255'
+            // 'task' => 'required|string|min:3|unique:tasks|max:255'
+            'task' => [
+                'required',
+                'string',
+                'min:3',
+                "unique:tasks,task,{$this->ID},id",
+                // "unique:tasks,task,{$this->id},id",
+                'max:255'
+            ]
         ];
     }
 
