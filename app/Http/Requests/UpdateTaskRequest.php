@@ -22,7 +22,7 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'task' => 'required|string|min:3|max:255'
+            'task' => 'required|string|min:3|unique:tasks|max:255'
         ];
     }
 
@@ -31,6 +31,7 @@ class UpdateTaskRequest extends FormRequest
         return [
             'taks.required' => 'Digite uma tarefa.',
             'task.min' => 'A tarefa deve conter pelo menos :min caracteres.',
+            'task.unique' => 'Já existe uma tarefa com esse nome.',
             'task.max' => 'A tarefa deve conter no máximo :max caracteres.'
         ];
     }
