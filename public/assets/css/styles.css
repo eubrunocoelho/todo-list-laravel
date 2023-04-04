@@ -20,6 +20,7 @@
     --border-default-color: 1px solid #2e2e37;
     --border-focus-primary-color: 2px solid #8257e5;
     --border-success-color: 1px solid #04d361;
+    --border-warning-color: 1px solid #eeb012;
     --border-default-radius: 8px;
     --border-element-radius: 5px;
     --font-roboto: 'Roboto', sans-serif;
@@ -30,6 +31,7 @@
     --text-primary-color: #8257e5;
     --text-selection-color: #121214;
     --text-success-color: #04d361;
+    --text-warning-color: #eeb012;
 }
 
 /**
@@ -77,6 +79,12 @@
     background: var(--bg-box-color) !important;
     border: var(--border-success-color) !important;
     color: var(--text-success-color) !important;
+}
+
+.box--warning {
+    background: var(--bg-box-color) !important;
+    border: var(--border-warning-color) !important;
+    color: var(--text-warning-color) !important;
 }
 
 .mb--20 {

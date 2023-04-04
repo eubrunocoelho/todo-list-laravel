@@ -5,6 +5,9 @@
 @section('title', 'Lista de Tarefas')
 
 @section('content')
+    <section class="section alert mb--20 box--warning">
+        <p>Testando ...</p>
+    </section>
     @if(session('message.success'))
     <section class="section alert mb--20 box--success">
         <p>{{ session('message.success') }}</p>
