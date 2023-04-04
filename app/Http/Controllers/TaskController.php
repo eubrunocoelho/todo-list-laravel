@@ -87,8 +87,22 @@ class TaskController extends Controller
         if (($task = $this->model->find($ID)) == null)
             return redirect()->route('tasks.index');
 
-        if ($task->status == 1) {
-            $task->update(['status' => '0']); // ...
+        switch ($task->status) {
+            case 0: {
+                    $task->update(['status' => '1']);
+                    return redirect()
+                        ->route('tasks.index')
+                        ->with('message.success', 'Tarefa concluída!');
+                }
+                break;
+            case 1: {
+                    $task->update(['status' => '0']);
+                    return redirect()
+                        ->route('tasks.index')
+                        ->with('message.success', 'Tarefa em andamento.');
+                }
+            default:
+                return redirect()->route('tasks.index');
         }
     }
 
