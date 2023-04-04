@@ -6,14 +6,14 @@
 
 @section('content')
     @if(session('message.warning'))
-    <section class="section alert mb--20 box--warning">
-        <p>{{ session('message.warning') }}</p>
-    </section>
+        <section class="section alert mb--20 box--warning">
+            <p>{{ session('message.warning') }}</p>
+        </section>
     @endif
     @if(session('message.success'))
-    <section class="section alert mb--20 box--success">
-        <p>{{ session('message.success') }}</p>
-    </section>
+        <section class="section alert mb--20 box--success">
+            <p>{{ session('message.success') }}</p>
+        </section>
     @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
