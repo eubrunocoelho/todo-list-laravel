@@ -11,8 +11,6 @@ use App\Http\Requests\{
     UpdateTaskRequest
 };
 
-use Illuminate\Http\Request;
-
 class TaskController extends Controller
 {
     protected $model;
@@ -24,7 +22,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        $tasks = $this->model->all();
+        $tasks = $this->model->simplePaginate(1);
 
         $templateVariables = [
             'tasks' => $tasks
@@ -99,7 +97,7 @@ class TaskController extends Controller
                     $task->update(['status' => '0']);
                     return redirect()
                         ->route('tasks.index')
-                        ->with('message.success', 'Tarefa em andamento.');
+                        ->with('message.warning', 'Tarefa em andamento.');
                 }
             default:
                 return redirect()->route('tasks.index');

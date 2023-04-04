@@ -5,9 +5,11 @@
 @section('title', 'Lista de Tarefas')
 
 @section('content')
+    @if(session('message.warning'))
     <section class="section alert mb--20 box--warning">
-        <p>Testando ...</p>
+        <p>{{ session('message.warning') }}</p>
     </section>
+    @endif
     @if(session('message.success'))
     <section class="section alert mb--20 box--success">
         <p>{{ session('message.success') }}</p>
@@ -59,4 +61,33 @@
             @endforeach
         </div>
     </section>
+    @if(isset($tasks))
+    <nav class="pagination">
+        <ul class="pagination__list">
+            @if($tasks->currentPage() > 1)
+                <li class="pagination__item">
+                    <a href="{{ $tasks->previousPageUrl() }}" class="pagination__link">«</a>
+                </li>
+            @else
+                <li class="pagination__item">
+                    <span class="pagination__link">«</span>
+                </li>
+            @endif
+            @if($tasks->currentPage())
+                <li class="pagination__item">
+                    <span class="pagination__link box--active">{{ $tasks->currentPage() }}</span>
+                </li>
+            @endif
+            @if($tasks->hasMorePages())
+                <li class="pagination__item">
+                    <a href="{{ $tasks->nextPageUrl() }}" class="pagination__link">»</a>
+                </li>
+            @else
+                <li class="pagination__item">
+                    <span class="pagination__link">»</span>
+                </li>
+            @endif
+        </ul>
+    </nav>
+    @endif
 @endsection
