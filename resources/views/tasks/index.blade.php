@@ -5,6 +5,11 @@
 @section('title', 'Lista de Tarefas')
 
 @section('content')
+    @if(session('message.success'))
+    <section class="section alert mb--20 box--success">
+        <p>{{ session('message.success') }}</p>
+    </section>
+    @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <section class="section alert mb--20 box--danger">
@@ -37,13 +42,13 @@
                     </div>
                     <h2 class="task__title {{ $status->textStyle }}">{{ $task->task }}</h2>
                     <div class="task__actions">
-                        <a href="./edit.html" class="action__box bg--blue">
+                        <a href="{{ route('tasks.update', $task->id) }}" class="action__box bg--blue">
                             <i class="fa-solid fa-pen action__icon"></i>
                         </a>
-                        <a href="#" class="action__box bg--danger">
+                        <a href="{{ route('tasks.delete', $task->id) }}" class="action__box bg--danger">
                             <i class="fa-solid fa-trash action__icon"></i>
                         </a>
-                        <a href="#" class="action__box {{ $status->bgColor }}">
+                        <a href="{{ route('tasks.status', $task->id) }}" class="action__box {{ $status->bgColor }}">
                             {!! $status->actionIcon !!}
                         </a>
                     </div>

@@ -21,7 +21,7 @@
                 <input type="text" class="edit-task__input" placeholder="{{ $task->task }}" id="task" name="task" value="{{ old('task') }}">
                 <div class="edit-task__group">
                     <button class="edit-task__btn bg--blue" type="submit"><span class="edit-task__icon"><i class="fa-solid fa-pen"></i></span>Editar</button>
-                    <button class="edit-task__btn bg--warning" onclick="window.location.href='./index.html'; return false;"><span class="edit-task__icon"><i class="fa-solid fa-rotate-left"></i></span>Cancelar</button>
+                    <button class="edit-task__btn bg--warning" onclick="window.location.href='{{ route('tasks.index') }}'; return false;"><span class="edit-task__icon"><i class="fa-solid fa-rotate-left"></i></span>Cancelar</button>
                 </div>
             </form>
         </div>

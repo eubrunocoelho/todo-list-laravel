@@ -49,41 +49,66 @@ class TaskController extends Controller
     {
         $data = $request->all();
 
+
         $this->model->create($data);
 
-        return redirect()->route('tasks.index');
+        return redirect()
+            ->route('tasks.index')
+            ->with('message.success', 'Tarefa adicionada com sucesso!');
     }
 
     public function update(UpdateTaskRequest $request, $ID)
     {
         if (($task = $this->model->find($ID)) == null)
-            return redirect()->route('task.index');
+            return redirect()->route('tasks.index');
 
         $data = $request->all();
 
         if ($task->update($data))
+            return redirect()
+                ->route('tasks.index')
+                ->with('message.success', 'Tarefa atualizada com sucesso!');
+    }
+
+    public function destroy($ID)
+    {
+        if (($task = $this->model->find($ID)) == null)
             return redirect()->route('tasks.index');
 
-        return redirect()->route('tasks.show', ['ID' => $task->id]);
+        $task->delete();
+
+        return redirect()
+            ->route('tasks.index')
+            ->with('message.success', 'Tarefa excluída com sucesso!');
+    }
+
+    public function status($ID)
+    {
+        if (($task = $this->model->find($ID)) == null)
+            return redirect()->route('tasks.index');
+
+        if ($task->status == 1) {
+            $task->update(['status' => '0']); // ...
+        }
     }
 
     public function getStatus($statusCode)
     {
         switch ($statusCode) {
+            case 0:
+                $status = [
+                    'iconColor' => null,
+                    'textStyle' => null,
+                    'bgColor' => 'bg--success',
+                    'actionIcon' => '<i class="fa-solid fa-check action__icon"></i>'
+                ];
+                break;
             case 1:
                 $status = [
                     'iconColor' => 'text--success',
                     'textStyle' => 'text--line',
                     'bgColor' => 'bg--warning',
                     'actionIcon' => '<i class="fa-solid fa-xmark action__icon"></i>'
-                ];
-                break;
-            case 2:
-                $status = [
-                    'iconColor' => null,
-                    'textStyle' => null,
-                    'bgColor' => 'bg--success',
-                    'actionIcon' => '<i class="fa-solid fa-check action__icon"></i>'
                 ];
                 break;
             default:
