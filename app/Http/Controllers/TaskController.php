@@ -36,7 +36,8 @@ class TaskController extends Controller
         session(['update.ID' => $ID]);
 
         if (($task = $this->model->find($ID)) == null)
-            return redirect()->route('tasks.index');
+            return redirect()
+                ->route('tasks.index');
 
         $templateVariables = [
             'task' => $task
@@ -59,10 +60,12 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, $ID)
     {
         if (session()->get('update.ID') !== $ID)
-            return redirect()->route('tasks.show', session()->get('update.ID'));
+            return redirect()
+                ->route('tasks.show', session()->get('update.ID'));
 
         if (($task = $this->model->find($ID)) == null)
-            return redirect()->route('tasks.index');
+            return redirect()
+                ->route('tasks.index');
 
         $data = $request->all();
 
@@ -109,6 +112,9 @@ class TaskController extends Controller
         }
     }
 
+    /**
+     * helper
+     */
     public function getStatus($statusCode)
     {
         switch ($statusCode) {
