@@ -22,7 +22,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        $tasks = $this->model->simplePaginate(1);
+        $tasks = $this->model->simplePaginate(8);
 
         $templateVariables = [
             'tasks' => $tasks
@@ -100,7 +100,8 @@ class TaskController extends Controller
                         ->with('message.warning', 'Tarefa em andamento.');
                 }
             default:
-                return redirect()->route('tasks.index');
+                return redirect()
+                    ->route('tasks.index');
         }
     }
 

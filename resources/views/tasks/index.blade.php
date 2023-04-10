@@ -73,9 +73,33 @@
                     <span class="pagination__link">«</span>
                 </li>
             @endif
-            @if($tasks->currentPage())
+            @if($tasks->onFirstPage())
                 <li class="pagination__item">
                     <span class="pagination__link box--active">{{ $tasks->currentPage() }}</span>
+                </li>
+            @else   
+                <li class="pagination__item">
+                    <a href="{{ $tasks->url(1) }}" class="pagination__link">1</a>
+                </li>
+            @endif
+            @if(!$tasks->onFirstPage())
+                <li class="pagination__item">
+                    <span class="pagination__link">...</span>
+                </li>
+            @endif
+            @if($tasks->currentPage() > 2)    
+                <li class="pagination__item">
+                    <a href="{{ $tasks->previousPageUrl() }}" class="pagination__link">{{ $tasks->currentPage() - 1 }}</a>
+                </li>
+            @endif
+            @if($tasks->currentPage() && !$tasks->onFirstPage())
+                <li class="pagination__item">
+                    <span class="pagination__link box--active">{{ $tasks->currentPage() }}</span>
+                </li>
+            @endif
+            @if($tasks->hasMorePages())
+                <li class="pagination__item">
+                    <a href="{{ $tasks->nextPageUrl() }}" class="pagination__link">{{ $tasks->currentPage() + 1 }}</a>
                 </li>
             @endif
             @if($tasks->hasMorePages())
