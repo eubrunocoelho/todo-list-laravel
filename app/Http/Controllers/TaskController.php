@@ -22,7 +22,11 @@ class TaskController extends Controller
 
     public function index()
     {
-        $tasks = $this->model->simplePaginate(8);
+        $tasks = $this->model
+            ->orderBy('status', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->simplePaginate(8);
 
         $templateVariables = [
             'tasks' => $tasks

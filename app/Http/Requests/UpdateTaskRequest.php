@@ -35,7 +35,7 @@ class UpdateTaskRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tasks.required' => 'Digite uma tarefa.',
+            'task.required' => 'Digite uma tarefa.',
             'task.min' => 'A tarefa deve conter pelo menos :min caracteres.',
             'task.unique' => 'Já existe uma tarefa com esse nome.',
             'task.max' => 'A tarefa deve conter no máximo :max caracteres.'
