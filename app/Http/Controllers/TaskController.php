@@ -33,6 +33,8 @@ class TaskController extends Controller
 
     public function show($ID)
     {
+        session(['update.ID' => $ID]);
+
         if (($task = $this->model->find($ID)) == null)
             return redirect()->route('tasks.index');
 
@@ -47,7 +49,6 @@ class TaskController extends Controller
     {
         $data = $request->all();
 
-
         $this->model->create($data);
 
         return redirect()
@@ -57,6 +58,9 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, $ID)
     {
+        if (session()->get('update.ID') !== $ID)
+            return redirect()->route('tasks.show', session()->get('update.ID'));
+
         if (($task = $this->model->find($ID)) == null)
             return redirect()->route('tasks.index');
 
