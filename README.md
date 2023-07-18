@@ -4,7 +4,7 @@
 
 Repositório criado com o objetivo de iniciar programação PHP com Laravel.
 
-A "mini-API" apresenta um To Do List com o famoso CRUD (Create, Read, Update, Delete) usando o banco de dados MySQL, com um tema criado por mim disponível em outro repositório ([todo-list-theme](https://github.com/eubrunocoelho/todo-list-theme)).
+A ´projeto apresenta um To Do List com o famoso CRUD (Create, Read, Update, Delete) usando o banco de dados MySQL, com um tema criado por mim disponível em outro repositório ([todo-list-theme](https://github.com/eubrunocoelho/todo-list-theme)).
 
 ## Tecnologias
 
